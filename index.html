@@ -734,11 +734,10 @@ function getGrayFrame(videoEl, canvasEl){
   return c / n;
     }
 
-
-function hasWhiteCluster(gray, w, h){
-  // detect tompokan silau besar (lebih tepat utk MyKad/lesen plastik)
-  const WHITE_T = 215; // lebih sensitif dari pctExtreme
-  const MIN_CLUSTER = Math.floor(w * h * 0.008); // ~0.8% kawasan
+  function hasWhiteCluster(gray, w, h){
+    
+  const WHITE_T = 215; 
+  const MIN_CLUSTER = Math.floor(w * h * 0.008);
 
   let run = 0;
   for (let i = 0; i < gray.length; i++){
