@@ -662,7 +662,7 @@ const OCR_LIVE = {
   brightnessMax: 210,
   stabilityAvgDiff: 7.5,
   stabilityDelta: 10,
-  glareWhitePct: 0.06,
+  glareWhitePct: 0.05,
   shadowBlackPct: 0.14
   }
 };
@@ -723,7 +723,7 @@ function getGrayFrame(videoEl, canvasEl){
   let c = 0;
   const n = gray.length;
 
-  const WHITE_T = 230;
+  const WHITE_T = 220;
   const BLACK_T = 18;
 
   for (let i=0;i<n;i++){
