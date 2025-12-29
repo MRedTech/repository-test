@@ -611,15 +611,12 @@ let stream = null;
       mykadInput.addEventListener('input', function () {
         let val = (this.value || '').toUpperCase();
 
-        // Auto dash bila cukup 12 digit (MyKad)
         if (/^\d{12}$/.test(val)) {
           this.value = val.replace(/(\d{6})(\d{2})(\d{4})/, "$1-$2-$3");
         } else {
-          // kekalkan A-Z0-9 sahaja untuk passport/lesen/manual
           this.value = val.replace(/[^A-Z0-9]/g, '');
         }
 
-        // Validasi MyKad: jika tiada huruf, wajib 12 digit
         validateMykadPassport();
       });
     })();
@@ -825,7 +822,6 @@ function startOcrLive(){
       const shadowPct = pctExtreme(gray, "black");
       const hasCluster = hasWhiteCluster(gray, w, h);
 
-      // FAIL jika % putih tinggi ATAU ada tompokan putih besar (silau)
       const okGlare = (glarePct < OCR_LIVE.TH.glareWhitePct) &&
                       (shadowPct < OCR_LIVE.TH.shadowBlackPct) &&
                       !hasCluster;
@@ -1246,14 +1242,12 @@ reasonSelect.addEventListener('change', function() {
       return Promise.resolve({ isConfirmed: true });
     }
 
-    // === VALIDASI MYKAD (TIADA HURUF) WAJIB 12 DIGIT ===
     function validateMykadPassport() {
       const el = document.getElementById('mykadPassport');
       if (!el) return true;
 
       const raw = (el.value || '').toUpperCase().trim();
 
-      // biar HTML required handle kalau kosong
       if (!raw) {
         el.setCustomValidity('');
         return true;
@@ -1262,17 +1256,15 @@ reasonSelect.addEventListener('change', function() {
       const alnum = raw.replace(/[^A-Z0-9]/g, '');
       const hasLetter = /[A-Z]/.test(alnum);
 
-      // Jika ada huruf => ini passport/lesen/ID lain, tak paksa 12 digit
       if (hasLetter) {
         el.setCustomValidity('');
         return true;
       }
 
-      // Tiada huruf => anggap MyKad, wajib 12 digit (abaikan dash)
       const digits = alnum.replace(/[^0-9]/g, '');
 
       if (digits.length !== 12) {
-        el.setCustomValidity('MYKAD WAJIB 12 DIGIT (SILA SEMAK & EDIT)');
+        el.setCustomValidity('Mykad 12 digit required');
         return false;
       }
 
@@ -1622,7 +1614,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.getElementById('mykadPassport').addEventListener('blur', async function() {
-      // Validate MyKad dulu (bubble native)
+      
       validateMykadPassport();
       if (!this.checkValidity()) {
         this.reportValidity();
@@ -1659,7 +1651,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("registrationForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    // Validate MyKad (tiada huruf => wajib 12 digit)
     try { validateMykadPassport(); } catch (e) {}
     try { updateCallLink(); } catch (e) {}
     if (!this.checkValidity()) {
