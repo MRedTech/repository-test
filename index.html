@@ -1095,9 +1095,8 @@ window.addEventListener('resize', adjustPreviewSize);
       const raw    = (contactEl.value || '').trim();
       const digits = raw.replace(/[^0-9]/g, '');
 
-      // Native small popup (browser) if contact number is not complete
       if (digits && digits.length < 10) {
-        contactEl.setCustomValidity('PLEASE ENTER AT LEAST 10 DIGITS');
+        contactEl.setCustomValidity('Minimum 10 digit required');
       } else {
         contactEl.setCustomValidity('');
       }
@@ -1615,8 +1614,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("registrationForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    // Browser native popup validation (small bubble)
-    // Ensure contact min 10 digits validated before submit
     try { updateCallLink(); } catch (e) {}
     if (!this.checkValidity()) {
       this.reportValidity();
