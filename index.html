@@ -49,7 +49,7 @@ body{
 }
 
 .header .sub{
-  font-size:9px;
+  font-size:12px;
   color:#489167;
   letter-spacing:.8px;
   margin-bottom:6px;
@@ -62,6 +62,22 @@ body{
   margin:0 auto 6px auto;
   background:linear-gradient(90deg,#3bd97b 20%, #2b7a2b 80%);
   border-radius:2px;
+}
+  /* ===== FIX HEADER (FROM GRADIENT LINE UPWARDS) ===== */
+.fixed-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #e9f5e9;
+  z-index: 9999;
+  padding-top: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+/* Tolak content bawah supaya tak kena lindih */
+body{
+  padding-top: 180px; /* adjust jika perlu */
 }
   .swal2-popup {
     width: 300px !important;
@@ -541,15 +557,25 @@ body{
 </style>
   </head>
   <body>
-    <div class="clock-bar"><span id="liveDateOnly"></span><span id="liveTimeOnly"></span>
+    <div class="fixed-header">
+
+  <div class="clock-bar">
+    <span id="liveDateOnly"></span>
+    <span id="liveTimeOnly"></span>
+  </div>
+
+  <div style="text-align:center;margin-bottom:6px;">
+    <h2 class="header-gradient" style="margin-bottom:0.18em;">
+      SECURE ENTRY
+    </h2>
+
+    <div style="color:#489167;font-size:12px;letter-spacing:0.6px;margin-bottom:6px;">
+      REGISTER.ACCESS.SECURE
     </div>
-    <div style="text-align:center;margin-bottom:8px;">
-      <h2 class="header-gradient" style="margin-bottom:0.18em;"><span style="vertical-align:middle;"></span>SECURE ENTRY
-      </h2>
-      <div style="color:#489167;font-size:13px;letter-spacing:0.6px;margin-bottom:6px;">REGISTER.ACCESS.SECURE
-      </div>
-      <div style="height:3px;width:60px;margin:0 auto 4px auto;background:linear-gradient(90deg,#3bd97b 20%,#2b7a2b 80%);border-radius:2px;">
-      </div>
+
+    <div class="header-line"></div>
+  </div>
+
     </div>
     <div class="search-minicard">
       <div class="search-mini-title"><span class="search-emoji">🔎</span><span>SEARCH RECORD</span>
