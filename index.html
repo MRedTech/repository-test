@@ -1816,7 +1816,7 @@ function syncHeaderOffset() {
   if (!header) return;
 
   const height = header.offsetHeight;
-  document.body.style.paddingTop = (height + 10) + 'px';
+  document.body.style.paddingTop = (height + 1) + 'px';
 }
 
 window.addEventListener('load', syncHeaderOffset);
