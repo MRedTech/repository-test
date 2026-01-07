@@ -1,6 +1,6 @@
 <html>
   <head>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet"><title>SECURE ENTRY SYSTEM</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="dns-prefetch" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://ext-cerrado.edreborn86.workers.dev" crossorigin><link rel="dns-prefetch" href="//ext-cerrado.edreborn86.workers.dev"><link rel="preconnect" href="https://sensory-vision.edreborn86.workers.dev" crossorigin><link rel="dns-prefetch" href="//sensory-vision.edreborn86.workers.dev">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet"><title>SECURE ENTRY SYSTEM</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="dns-prefetch" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://ext-mredtech.edreborn86.workers.dev" crossorigin><link rel="dns-prefetch" href="//ext-mredtech.edreborn86.workers.dev"><link rel="preconnect" href="https://sensory-vision.edreborn86.workers.dev" crossorigin><link rel="dns-prefetch" href="//sensory-vision.edreborn86.workers.dev">
     <style>
 
 .fixed-header{
@@ -583,13 +583,13 @@ h2 {
     </div>
     <div class="image-container" id="imageContainer">
       <img id="preview" src="#" alt="IMAGE PREVIEW">
-      <div class="watermark">CERRADO USE ONLY
+      <div class="watermark">SENSORY USE ONLY
       </div>
     </div>
     <form id="registrationForm" autocomplete="off"><label for="namePassport">NAME</label><input type="text" id="namePassport" name="namePassport" required><label for="mykadPassport">MYKAD / PASSPORT</label><input type="text" id="mykadPassport" name="mykadPassport" required><label for="regnum">REGISTRATION NUMBER</label><input type="text" id="regnum" name="regnum" required><label for="contact">CONTACT NUMBER</label>
       <div class="phone-container"><input type="tel" id="contact" name="contact" required oninput="updateCallLink()" minlength="10" maxlength="15" autocomplete="off" inputmode="numeric" pattern="[0-9]{10,15}"><a id="callBtn" class="call-btn-3d" title="Call this number" style="display:none;" target="_blank"><span>📞</span></a>
       </div><label for="remark">CATEGORY</label>
-      <select id="remark" name="remark" required><option value="" disabled selected>-PLEASE SELECT-</option><option value="DROP OFF/PICK UP">DROP OFF/PICK UP</option><option value="DHL">DHL</option><option value="E-HAILING">E-HAILING</option><option value="FLASH EXPRESS">FLASH EXPRESS</option><option value="FOOD PANDA">FOOD PANDA</option><option value="GDEX">GDEX</option><option value="GRAB FOOD">GRAB FOOD</option><option value="J&T EXPRESS">J&T EXPRESS</option><option value="LALAMOVE">LALAMOVE</option><option value="LAZADA">LAZADA</option><option value="MCD FOOD DELIVERY">MCD FOOD DELIVERY</option><option value="NINJA VAN">NINJA VAN</option><option value="OWNER">OWNER</option><option value="PEDESTRIAN B1">PEDESTRIAN B1</option><option value="POS LAJU">POS LAJU</option><option value="SHOPEE EXPRESS">SHOPEE EXPRESS</option><option value="SHOPEE FOOD">SHOPEE FOOD</option><option value="TENANT">TENANT</option><option value="OTHER">OTHER</option>
+      <select id="remark" name="remark" required><option value="" disabled selected>-PLEASE SELECT-</option><option value="DROP OFF/PICK UP">DROP OFF/PICK UP</option><option value="DHL">DHL</option><option value="E-HAILING">E-HAILING</option><option value="FLASH EXPRESS">FLASH EXPRESS</option><option value="FOOD PANDA">FOOD PANDA</option><option value="GDEX">GDEX</option><option value="GRAB FOOD">GRAB FOOD</option><option value="J&T EXPRESS">J&T EXPRESS</option><option value="LALAMOVE">LALAMOVE</option><option value="LAZADA">LAZADA</option><option value="MCD FOOD DELIVERY">MCD FOOD DELIVERY</option><option value="NINJA VAN">NINJA VAN</option><option value="OWNER">OWNER</option><option value="POS LAJU">POS LAJU</option><option value="SHOPEE EXPRESS">SHOPEE EXPRESS</option><option value="SHOPEE FOOD">SHOPEE FOOD</option><option value="TENANT">TENANT</option><option value="OTHER">OTHER</option>
       </select><input type="text" id="unitNumber" name="unitNumber" placeholder="UNIT NUMBER" style="display:none; margin-top:10px;"><input type="text" id="otherCategory" name="otherCategory" placeholder="PLEASE SPECIFY" style="display:none; margin-top:10px;">
       <div id="reasonSection" style="display:none; margin-top:10px;"><label for="reasonSelect">REASON</label>
         <select id="reasonSelect" name="reasonSelect"><option value="" disabled selected>-PLEASE SELECT-</option><option value="Block card">Block card</option><option value="Lost card">Lost card</option><option value="Forget card">Forget card</option><option value="Damaged card">Damaged card</option><option value="Under management process">Under management process</option><option value="Insufficient card">Insufficient card</option><option value="Clone card">Clone card</option><option value="Other">Other</option>
@@ -1166,7 +1166,7 @@ reasonOther.required = false;
 
 remarkSelect.addEventListener('change', function() {
   const val = this.value.toUpperCase();
-  const isResident = (val === 'OWNER' || val === 'TENANT' || val === 'PEDESTRIAN B1');
+  const isResident = (val === 'OWNER' || val === 'TENANT');
 
   unitField.style.display     = isResident ? 'block' : 'none';
   reasonSection.style.display = isResident ? 'block' : 'none';
@@ -1404,7 +1404,7 @@ reasonSelect.addEventListener('change', function() {
       return cleaned;
     }
 
-    const WORKER_URL = "https://ext-cerrado.edreborn86.workers.dev";
+    const WORKER_URL = "https://ext-mredtech.edreborn86.workers.dev";
 
 document.addEventListener("DOMContentLoaded", () => {
   if (!sessionStorage.getItem("SE_WARMED")) {
@@ -1699,7 +1699,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-  const urlCloudflareWorker = "https://ext-cerrado.edreborn86.workers.dev";
+  const urlCloudflareWorker = "https://ext-mredtech.edreborn86.workers.dev";
 
   let __SE_isSubmitting = false;
 
