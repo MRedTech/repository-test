@@ -1287,16 +1287,13 @@ let stream = null;
       mykadInput.addEventListener('input', function () {
         const raw = (this.value || '').toUpperCase().trim();
 
-        // Normalize first (so pasted/auto-filled values like 860923-49-6973 will still format)
         const alnum = raw.replace(/[^A-Z0-9]/g, '');
         const hasLetter = /[A-Z]/.test(alnum);
         const digits = alnum.replace(/[^0-9]/g, '');
 
         if (!hasLetter && digits.length === 12) {
-          // MyKad: 12 digits -> auto dash
           this.value = digits.replace(/(\d{6})(\d{2})(\d{4})/, "$1-$2-$3");
         } else {
-          // Passport / Licence / mixed -> keep alnum only
           this.value = alnum;
         }
 
@@ -2134,7 +2131,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!sessionStorage.getItem("SE_WARMED")) {
     fetch(WORKER_URL + "?debug=1", { cache: "no-store" }).catch(() => {});
     fetch(WORKER_URL + "?ping=1", { cache: "no-store" }).catch(() => {});
-    // Extra warm-up (safe): reduces cold-start latency on some networks/devices
     setTimeout(() => {
       fetch(WORKER_URL + "?ping=2", { cache: "no-store" }).catch(() => {});
     }, 800);
@@ -2171,7 +2167,6 @@ document.addEventListener("DOMContentLoaded", () => {
     async function searchRecord(field, value) {
       const cacheKey = `SE_SRCH_${field}|${value}`;
 
-      // In-flight dedupe (avoid double fetch if user taps SEARCH twice)
       if (!window.__SE_SEARCH_INFLIGHT) window.__SE_SEARCH_INFLIGHT = new Map();
       if (window.__SE_SEARCH_INFLIGHT.has(cacheKey)) {
         return await window.__SE_SEARCH_INFLIGHT.get(cacheKey);
@@ -2433,7 +2428,6 @@ document.addEventListener("DOMContentLoaded", () => {
           document.getElementById('remark').value = "OTHER";
           document.getElementById('remark').dispatchEvent(new Event('change'));
 
-          // IMPORTANT: do NOT reuse previous "OTHER ( ... )" value from old record
           const otherEl = document.getElementById('otherCategory');
           if (otherEl) {
             otherEl.value = "";
@@ -2566,6 +2560,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('preview').src = "#";
         document.getElementById('imageContainer').style.display = 'none';
         __SE_SUBMIT_PHOTO = "";
+        const callBtn = document.getElementById('callBtn');
+        if (callBtn) {
+        callBtn.style.display = 'none';
+        callBtn.removeAttribute('href');
+        }
         document.getElementById('unitNumber').style.display = 'none';
         document.getElementById('otherCategory').style.display = 'none';
         document.getElementById('reasonSection').style.display = 'none';
