@@ -2557,7 +2557,7 @@ function autofillForm(data) {
   }
 
   if (data.remark) {
-    let matchOwnerTenant = data.remark.match(/^(OWNER|TENANT)/i);
+    let matchOwnerTenant = data.remark.match(/^(OWNER|TENANT|PEDESTRIAN B1)/i);
     let matchOther = data.remark.match(/^OTHER\s*\(/i);
 
     if (matchOwnerTenant) {
@@ -2620,12 +2620,12 @@ document.getElementById("registrationForm").addEventListener("submit", async fun
 
   if (remarkValue === "OTHER" && otherCategoryVal) {
     remarkValue = `OTHER ( ${otherCategoryVal} )`;
-  } else if ((remarkValue === "OWNER" || remarkValue === "TENANT") && unitNumberVal) {
+  } else if ((remarkValue === "OWNER" || remarkValue === "TENANT" || remarkValue === "PEDESTRIAN B1") && unitNumberVal) {
     remarkValue = `${remarkValue} ( ${unitNumberVal} )`;
   }
 
   let reasonFinal = "";
-  if ((remarkValue.includes("OWNER") || remarkValue.includes("TENANT")) && reasonVal) {
+  if ((remarkValue.includes("OWNER") || remarkValue.includes("TENANT") || remarkValue.includes("PEDESTRIAN B1")) && reasonVal) {
     if (reasonVal === "Other" && reasonOtherVal) {
       reasonFinal = `OTHER ( ${reasonOtherVal} )`;
     } else {
