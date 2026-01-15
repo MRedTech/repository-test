@@ -4,8 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://ext-mredtech.edreborn86.workers.dev" crossorigin>
-    <link rel="dns-prefetch" href="//ext-mredtech.edreborn86.workers.dev">
+    <link rel="preconnect" href="https://ext-cerrado.edreborn86.workers.dev" crossorigin>
+    <link rel="dns-prefetch" href="//ext-cerrado.edreborn86.workers.dev">
     <link rel="preconnect" href="https://sensory-vision.edreborn86.workers.dev" crossorigin>
     <link rel="dns-prefetch" href="//sensory-vision.edreborn86.workers.dev">
 
@@ -465,7 +465,6 @@
 
       }
 
-      /* Select placeholder (kelabu pudar) + selected (hitam) */
       select {
         color: #111111;
       }
@@ -1134,7 +1133,7 @@ textarea:focus{
     
 
 /* ==================================================
-   PREMIUM UI PATCH (A+B)
+   PREMIUM UI PATCH 
    - Fixed header premium (Sensory style)
    - Soft green glow cards/inputs
    - Consistent 3D/gradient buttons
@@ -1293,7 +1292,7 @@ select:focus,
 </div>
 <div class="image-container" id="imageContainer">
   <img id="preview" src="#" alt="IMAGE PREVIEW">
-  <div class="watermark">SENSORY USE ONLY
+  <div class="watermark">CERRADO USE ONLY
 </div>
 </div>
 <form id="registrationForm" autocomplete="off">
@@ -1326,6 +1325,7 @@ select:focus,
     <option value="MCD FOOD DELIVERY">MCD FOOD DELIVERY</option>
     <option value="NINJA VAN">NINJA VAN</option>
     <option value="OWNER">OWNER</option>
+    <option value="PEDESTRIAN B1">PEDESTRIAN B1</option>
     <option value="POS LAJU">POS LAJU</option>
     <option value="SHOPEE EXPRESS">SHOPEE EXPRESS</option>
     <option value="SHOPEE FOOD">SHOPEE FOOD</option>
@@ -1427,7 +1427,7 @@ select:focus,
 /* =========================
    CONFIG / CONSTANTS
 ========================= */
-const WORKER_URL = "https://ext-mredtech.edreborn86.workers.dev";
+const WORKER_URL = "https://ext-cerrado.edreborn86.workers.dev";
 const VISION_PROXY_URL = "https://sensory-vision.edreborn86.workers.dev";
 
 // Preview display ratio used by adjustPreviewSize() (maxHeight = width * ratio)
@@ -1542,13 +1542,11 @@ function setPreviewAndCache(dataUrl){
 }
 
 function hideOverlayWatermark(){
-  // Jika watermark sudah dibakar (burn-in) ke dalam imej,
-  // kita sembunyikan overlay supaya tak jadi dua kali.
   if (watermarkOverlay) watermarkOverlay.style.display = 'none';
 }
 
 function drawWatermarkOnCanvas(ctx, w, h){
-  const text = "SENSORY USE ONLY";
+  const text = "CERRADO USE ONLY";
   ctx.save();
   ctx.translate(w * 0.5, h * 0.5);
   ctx.rotate(-40 * Math.PI / 180);
@@ -2205,7 +2203,7 @@ reasonOther.required = false;
 
 remarkSelect.addEventListener('change', function() {
   const val = this.value.toUpperCase();
-  const isResident = (val === 'OWNER' || val === 'TENANT');
+  const isResident = (val === 'OWNER' || val === 'TENANT' || val === 'PEDESTRIAN B1');
 
   unitField.style.display     = isResident ? 'block' : 'none';
   reasonSection.style.display = isResident ? 'block' : 'none';
@@ -2708,7 +2706,7 @@ function autofillForm(data) {
   }
 
   if (data.remark) {
-    let matchOwnerTenant = data.remark.match(/^(OWNER|TENANT)/i);
+    let matchOwnerTenant = data.remark.match(/^(OWNER|TENANT|PEDESTRIAN B1)/i);
     let matchOther = data.remark.match(/^OTHER\s*\(/i);
 
     if (matchOwnerTenant) {
@@ -2771,12 +2769,12 @@ document.getElementById("registrationForm").addEventListener("submit", async fun
 
   if (remarkValue === "OTHER" && otherCategoryVal) {
     remarkValue = `OTHER ( ${otherCategoryVal} )`;
-  } else if ((remarkValue === "OWNER" || remarkValue === "TENANT") && unitNumberVal) {
+  } else if ((remarkValue === "OWNER" || remarkValue === "TENANT" || remarkValue === "PEDESTRIAN B1") && unitNumberVal) {
     remarkValue = `${remarkValue} ( ${unitNumberVal} )`;
   }
 
   let reasonFinal = "";
-  if ((remarkValue.includes("OWNER") || remarkValue.includes("TENANT")) && reasonVal) {
+  if ((remarkValue.includes("OWNER") || remarkValue.includes("TENANT") || remarkValue.includes("PEDESTRIAN B1")) && reasonVal) {
     if (reasonVal === "Other" && reasonOtherVal) {
       reasonFinal = `OTHER ( ${reasonOtherVal} )`;
     } else {
