@@ -6,10 +6,11 @@
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <link rel="preconnect" href="https://mredtech01.edreborn86.workers.dev" crossorigin>
     <link rel="dns-prefetch" href="//mredtech01.edreborn86.workers.dev">
-    <link rel="preconnect" href="https://sensory-vision.edreborn86.workers.dev" crossorigin>
-    <link rel="dns-prefetch" href="//sensory-vision.edreborn86.workers.dev">
+    <link rel="preconnect" href="https://secure-entry-vision.edreborn86.workers.dev" crossorigin>
+    <link rel="dns-prefetch" href="//secure-entry-vision.edreborn86.workers.dev">
 
     <style>
+
     .fixed-header{
 
       position: fixed;
@@ -29,6 +30,8 @@
       box-shadow: 0 2px 8px rgba(0,0,0,.08);
 
     }
+
+
 
     .header-inner{
 
@@ -56,6 +59,8 @@
 
     }
 
+
+
     body{
 
       margin:0;
@@ -69,6 +74,8 @@
       padding: 0 20px 20px 20px;
 
     }
+
+
 
     h2 {
 
@@ -150,6 +157,8 @@
         color: transparent;
 
       }
+
+
 
       .swal2-popup {
 
@@ -263,6 +272,8 @@
 
       }
 
+
+
     .top-action {
 
         text-align: center;
@@ -315,6 +326,8 @@
 
       }
 
+
+
       .photo-label {
 
         color: #2b7a2b;
@@ -330,6 +343,8 @@
         display: block;
 
       }
+
+
 
       .image-container {
 
@@ -405,6 +420,8 @@
 
       }
 
+
+
       label {
 
         display: block;
@@ -461,6 +478,8 @@
         color: var(--se-placeholder) !important;
       }
 
+
+
       select:invalid,
       .reason-placeholder {
 
@@ -473,6 +492,8 @@
       color: #888888;
 
       }
+
+
 
       .phone-container {
 
@@ -556,6 +577,8 @@
 
       }
 
+
+
       .footer {
 
       position: fixed;
@@ -579,6 +602,8 @@
       pointer-events: none;
 
     }
+
+
 
       .camera-modal {
 
@@ -778,6 +803,8 @@
 
         box-sizing: border-box;
 
+
+
         border: 3px solid rgba(255, 255, 255, 0.25);
 
         border-top-color: #ffffff;
@@ -796,6 +823,8 @@
 
       }
 
+
+
       @keyframes google-spin {
 
         0%   { transform: rotate(0deg); }
@@ -805,6 +834,8 @@
         100% { transform: rotate(360deg); }
 
       }
+
+
 
     .ocr-panel{
 
@@ -821,6 +852,8 @@
       user-select:none;
 
     }
+
+
 
     .ocr-item{
 
@@ -842,6 +875,8 @@
 
     }
 
+
+
     .ocr-item .dot{
 
       width:12px;
@@ -854,19 +889,27 @@
 
     }
 
+
+
     .ocr-item.bad{ color:#ff3b3b; }
 
     .ocr-item.bad .dot{ background:#ff3b3b; box-shadow:0 0 12px rgba(255,59,59,.65); }
 
+
+
     .ocr-item.good{ color:#16c172; }
 
     .ocr-item.good .dot{ background:#16c172; box-shadow:0 0 12px rgba(22,193,114,.85); }
+
+
 
     .guideline.ocr-ready{
 
       animation: ocrGoogleBorder 1.4s linear infinite, ocrGlow 0.8s ease-in-out infinite alternate;
 
     }
+
+
 
     @keyframes ocrGoogleBorder{
 
@@ -890,6 +933,8 @@
 
     }
 
+
+
     .camera-wrap{
 
       position: relative;
@@ -901,6 +946,8 @@
       align-items: center;
 
     }
+
+
 
     #ocrLivePanel.ocr-panel{
 
@@ -918,6 +965,8 @@
 
     }
 
+
+
     .ocr-title{
 
       font-size: 11px;
@@ -934,6 +983,8 @@
 
     }
 
+
+
     .camera-wrap .capture-btn-3d{
 
       position: static !important;
@@ -943,6 +994,8 @@
       z-index: 999999;
 
     }
+
+
 
     #cameraModal .capture-btn-3d{
 
@@ -955,6 +1008,8 @@
       transform: none !important;
 
     }
+
+
 
     .search-minicard {
 
@@ -1296,7 +1351,7 @@ select:focus,
 </div>
 <div class="image-container" id="imageContainer">
   <img id="preview" src="#" alt="IMAGE PREVIEW">
-  <div class="watermark">CERRADO USE ONLY
+  <div class="watermark">SENSORY USE ONLY
 </div>
 </div>
 <form id="registrationForm" autocomplete="off">
@@ -1316,8 +1371,12 @@ select:focus,
   <label for="remark">CATEGORY</label>
   <select id="remark" name="remark" required>
     <option value="" disabled selected hidden>-PLEASE SELECT-</option>
+    <option value="ABX EXPRESS">ABX EXPRESS</option>
+    <option value="CITY LINK">CITY LINK</option>
     <option value="DROP OFF/PICK UP">DROP OFF/PICK UP</option>
     <option value="DHL">DHL</option>
+    <option value="FEDEX">FEDEX</option>
+    <option value="DOMINOS DELIVERY">DOMINOS DELIVERY</option>
     <option value="E-HAILING">E-HAILING</option>
     <option value="FLASH EXPRESS">FLASH EXPRESS</option>
     <option value="FOOD PANDA">FOOD PANDA</option>
@@ -1328,11 +1387,12 @@ select:focus,
     <option value="LAZADA">LAZADA</option>
     <option value="MCD FOOD DELIVERY">MCD FOOD DELIVERY</option>
     <option value="NINJA VAN">NINJA VAN</option>
-        <option value="PEDESTRIAN GATE">PEDESTRIAN GATE</option>
-<option value="OWNER">OWNER</option>
+    <option value="OWNER">OWNER</option>
     <option value="POS LAJU">POS LAJU</option>
+    <option value="RESTAURANT DELIVERY">RESTAURANT DELIVERY</option>
     <option value="SHOPEE EXPRESS">SHOPEE EXPRESS</option>
     <option value="SHOPEE FOOD">SHOPEE FOOD</option>
+    <option value="SKYNET">SKYNET</option>
     <option value="TENANT">TENANT</option>
     <option value="OTHER">OTHER</option>
   </select>
@@ -1437,7 +1497,7 @@ select:focus,
    CONFIG / CONSTANTS
 ========================= */
 const WORKER_URL = "https://mredtech01.edreborn86.workers.dev/";
-const VISION_PROXY_URL = "https://sensory-vision.edreborn86.workers.dev";
+const VISION_PROXY_URL = "https://secure-entry-vision.edreborn86.workers.dev";
 
 // Preview display ratio used by adjustPreviewSize() (maxHeight = width * ratio)
 const PREVIEW_MAX_RATIO = 0.78;
@@ -1598,7 +1658,7 @@ function setPreviewOnly(dataUrl){
 }
 
 function drawWatermarkOnCanvas(ctx, w, h){
-  const text = "CERRADO USE ONLY";
+  const text = "SENSORY USE ONLY";
   ctx.save();
   ctx.translate(w * 0.5, h * 0.5);
   ctx.rotate(-40 * Math.PI / 180);
@@ -2462,7 +2522,7 @@ reasonOther.required = false;
 
 remarkSelect.addEventListener('change', function() {
   const val = this.value.toUpperCase();
-  const isResident = (val === 'OWNER' || val === 'TENANT' || val === 'PEDESTRIAN GATE');
+  const isResident = (val === 'OWNER' || val === 'TENANT');
 
   unitField.style.display     = isResident ? 'block' : 'none';
   reasonSection.style.display = isResident ? 'block' : 'none';
@@ -2479,11 +2539,11 @@ remarkSelect.addEventListener('change', function() {
     reasonOther.value = "";
   }
 
-  const isOtherCat = (val === 'OTHER');
-  otherField.style.display = isOtherCat ? 'block' : 'none';
-  otherField.required = isOtherCat;
+  const needsSpecify = (val === 'OTHER' || val === 'RESTAURANT DELIVERY');
+  otherField.style.display = needsSpecify ? 'block' : 'none';
+  otherField.required = needsSpecify;
 
-  if (!isOtherCat) {
+  if (!needsSpecify) {
     otherField.value = "";
     otherField.required = false;
   }
@@ -3036,7 +3096,7 @@ function autofillForm(data) {
   }
 
   if (data.remark) {
-    let matchOwnerTenant = data.remark.match(/^(OWNER|TENANT|PEDESTRIAN GATE)/i);
+    let matchOwnerTenant = data.remark.match(/^(OWNER|TENANT)/i);
     let matchOther = data.remark.match(/^OTHER\s*\(/i);
 
     if (matchOwnerTenant) {
@@ -3356,9 +3416,9 @@ document.getElementById("registrationForm").addEventListener("submit", async fun
   let reasonVal = document.getElementById('reasonSelect').value;
   let reasonOtherVal = document.getElementById('reasonOther').value.trim();
 
-  if (remarkValue === "OTHER" && otherCategoryVal) {
-    remarkValue = `OTHER ( ${otherCategoryVal} )`;
-  } else if ((remarkValue === "OWNER" || remarkValue === "TENANT" || remarkValue === "PEDESTRIAN GATE") && unitNumberVal) {
+  if ((remarkValue === "OTHER" || remarkValue === "RESTAURANT DELIVERY") && otherCategoryVal) {
+    remarkValue = `${remarkValue} ( ${otherCategoryVal} )`;
+  } else if ((remarkValue === "OWNER" || remarkValue === "TENANT") && unitNumberVal) {
     remarkValue = `${remarkValue} ( ${unitNumberVal} )`;
   }
 
