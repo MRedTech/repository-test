@@ -2328,6 +2328,10 @@ function captureImage() {
 
       const result = await res.json();
       document.body.style.cursor = 'default';
+      
+      if (result.error) {
+        throw new Error("Mesej AI: " + result.message);
+      }
 
       // Semak jika Gemini memulangkan data name atau idnum
       if (result.name || result.idnum) {
