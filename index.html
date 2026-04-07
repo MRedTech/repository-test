@@ -2320,7 +2320,7 @@ function captureImage() {
     try {
       document.body.style.cursor = 'progress';
 
-      const res = await fetch(VISION_PROXY_URL, {
+     const res = await fetch(VISION_PROXY_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ image: cleanDataUrl.split(",")[1] })
@@ -2329,22 +2329,47 @@ function captureImage() {
       const result = await res.json();
       document.body.style.cursor = 'default';
 
-      if (result.name) {
-        const rawName   = result.name.toUpperCase().trim();
-        const cleanName = filterNonNameWords(rawName);
-        document.getElementById('namePassport').value = cleanName;
-      }
-      if (result.idnum) {
-        const icEl = document.getElementById('mykadPassport');
-        if (icEl) {
-          icEl.value = result.idnum.toUpperCase();
-          icEl.dispatchEvent(new Event('input'));
+      // Semak jika Gemini memulangkan data name atau idnum
+      if (result.name || result.idnum) {
+        if (result.name) {
+          const rawName = result.name.toUpperCase().trim();
+          // Gunakan filterNonNameWords sedia ada dalam index.html anda
+          const cleanName = filterNonNameWords(rawName);
+          document.getElementById('namePassport').value = cleanName;
         }
+        
+        if (result.idnum) {
+          const icEl = document.getElementById('mykadPassport');
+          if (icEl) {
+            icEl.value = result.idnum.toUpperCase();
+            // Trigger input event supaya fungsi auto-dash MyKad berjalan
+            icEl.dispatchEvent(new Event('input'));
+          }
+        }
+
+        // Paparan notifikasi sukses kecil (Toast)
+        Swal.fire({
+          toast: true,
+          position: 'top',
+          icon: 'success',
+          title: 'AUTOFILL BERJAYA',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      } else {
+        throw new Error("Data tidak dijumpai dalam imej.");
       }
 
     } catch (err) {
       document.body.style.cursor = 'default';
-      alert("Autofill GAGAL: " + err.message);
+      console.error("Autofill Error:", err);
+      // Notifikasi jika gagal
+      Swal.fire({
+        icon: 'error',
+        title: 'AUTOFILL GAGAL',
+        text: err.message || 'Sila isi borang secara manual.',
+        confirmButtonText: 'OK'
+      });
     }
   })();
 }
