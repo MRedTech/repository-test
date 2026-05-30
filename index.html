@@ -16,24 +16,24 @@
 
   <style>
     /* ==================================================
-       MODERN & PREMIUM UI STYLES (UPDATED)
+       MODERN & PREMIUM UI STYLES (COMPACT VERSION)
        - Soft shadows & Clean White Cards
        - Glassmorphism Header
        - Elegant Green Gradients
-       - Smoother Inputs & Buttons
+       - Smoother Inputs & Buttons (Thinner Size)
     ================================================== */
     :root {
       --se-green-1: #3bd97b;
       --se-green-2: #2b7a2b;
       --se-green-3: #176B39;
-      --se-bg: #f2f7f4; /* Elegan off-white green */
+      --se-bg: #f2f7f4; 
       --se-card: #ffffff;
       --se-text: #176B39;
       --se-placeholder: #a7b2ad;
       --se-border: #cde0d4;
       --se-glow: rgba(59, 217, 123, 0.18);
-      --se-shadow-card: 0 12px 35px rgba(23, 107, 57, 0.07);
-      --se-shadow-btn: 0 8px 22px rgba(23, 107, 57, 0.25);
+      --se-shadow-card: 0 10px 30px rgba(23, 107, 57, 0.06);
+      --se-shadow-btn: 0 6px 18px rgba(23, 107, 57, 0.20);
     }
 
     /* Respect reduce-motion */
@@ -127,33 +127,34 @@
       z-index: 10;
     }
 
-    /* CARDS: Search & Form */
+    /* CARDS: Search & Form (Compact padding) */
     .search-minicard {
       max-width: 340px;
-      margin: 18px auto 22px auto;
+      margin: 18px auto 20px auto;
       background: var(--se-card);
-      border-radius: 16px;
+      border-radius: 14px;
       border: 1px solid rgba(23, 107, 57, 0.04);
       box-shadow: var(--se-shadow-card);
-      padding: 20px 20px 22px 20px;
+      padding: 16px 16px 18px 16px;
     }
 
     #registrationForm {
       max-width: 340px;
-      margin: 0 auto 20px auto;
+      margin: 0 auto 18px auto;
       background: var(--se-card);
-      border-radius: 16px;
+      border-radius: 14px;
       border: 1px solid rgba(23, 107, 57, 0.04);
       box-shadow: var(--se-shadow-card);
-      padding: 24px 20px;
+      padding: 18px 16px;
     }
 
+    /* Font size matched with search button */
     .search-mini-title {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 14px;
-      font-size: 15px;
+      margin-bottom: 10px;
+      font-size: 13px; /* Reduced from 15px */
       font-weight: 800;
       color: var(--se-green-3);
       letter-spacing: 1px;
@@ -161,13 +162,13 @@
 
     .search-emoji {
       margin-right: 7px;
-      font-size: 1.18em;
+      font-size: 1.2em;
     }
 
     /* TOP ACTION (Photo Button Area) */
     .top-action {
       text-align: center;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .photo-label {
@@ -175,17 +176,17 @@
       font-weight: 800;
       font-size: 11px;
       letter-spacing: 0.8px;
-      margin-top: 8px;
+      margin-top: 6px;
       margin-bottom: 3px;
       display: block;
       opacity: 0.85;
     }
 
-    /* LABELS & INPUTS (Clean & Glow) */
+    /* LABELS & INPUTS (Thin & Clean) */
     label {
       display: block;
-      margin-top: 14px;
-      margin-bottom: 6px;
+      margin-top: 12px; /* Reduced spacing */
+      margin-bottom: 4px;
       color: var(--se-green-3);
       font-weight: 800;
       font-size: 11px;
@@ -193,16 +194,16 @@
       opacity: 0.9;
     }
     
-    /* Target first label to remove extra top margin */
     #registrationForm label:first-of-type {
       margin-top: 0;
     }
 
+    /* Reduced padding to make inputs thinner */
     input, select, .search-mini-input {
       width: 100%;
-      padding: 12px 14px;
+      padding: 8px 12px; /* Thin padding */
       border: 1.5px solid var(--se-border);
-      border-radius: 10px;
+      border-radius: 8px; /* Slightly sharper corners */
       text-transform: uppercase;
       background-color: #fcfdfc;
       box-sizing: border-box;
@@ -210,11 +211,11 @@
       font-weight: 700;
       color: #111111;
       transition: all 0.25s ease;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .search-mini-input {
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     input::placeholder, .search-mini-input::placeholder {
@@ -238,7 +239,7 @@
       border: 1.5px solid var(--se-green-1) !important;
       background: #ffffff !important;
       outline: none !important;
-      box-shadow: 0 0 0 4px var(--se-glow) !important;
+      box-shadow: 0 0 0 3px var(--se-glow) !important;
     }
 
     /* ERROR STATE: Blink (Overrides focus) */
@@ -253,15 +254,15 @@
       50% { box-shadow: 0 0 0 3px rgba(231, 76, 60, .35), 0 0 0 7px rgba(231, 76, 60, .16); }
     }
 
-    /* BUTTONS: Flat & Elegant Shadows */
+    /* BUTTONS: Flat & Elegant Shadows (Thinner) */
     .btn-3d, .search-mini-btn, .submit-3d {
       background: linear-gradient(135deg, var(--se-green-3) 0%, var(--se-green-2) 100%);
       color: #fff;
       border: none;
-      border-radius: 12px;
+      border-radius: 10px; /* Matched radius */
       font-size: 13px;
       font-weight: 800;
-      padding: 14px 24px;
+      padding: 10px 24px; /* Reduced vertical padding */
       box-shadow: var(--se-shadow-btn);
       letter-spacing: 1.5px;
       cursor: pointer;
@@ -271,35 +272,34 @@
       display: inline-block;
     }
     
-    /* Take photo button specific width */
     #takePhotoBtn {
       width: auto;
       min-width: 180px;
     }
 
     .btn-3d:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(23, 107, 57, 0.35);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(23, 107, 57, 0.30);
     }
 
     .btn-3d:active {
       transform: translateY(1px) scale(0.98);
-      box-shadow: 0 4px 12px rgba(23, 107, 57, 0.2);
+      box-shadow: 0 3px 10px rgba(23, 107, 57, 0.2);
     }
 
     .btn-3d:disabled {
       opacity: 0.7;
       transform: none !important;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08) !important;
       cursor: not-allowed;
     }
 
-    .submit-3d { margin-top: 14px; }
+    .submit-3d { margin-top: 12px; }
     
     /* PHONE & CALL BUTTON */
     .phone-container {
       position: relative;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
     }
@@ -313,10 +313,10 @@
       background: linear-gradient(135deg, var(--se-green-3) 0%, var(--se-green-2) 100%);
       color: #fff;
       border: none;
-      border-radius: 12px;
-      width: 48px;
-      height: 44px; /* match input height */
-      font-size: 17px;
+      border-radius: 10px;
+      width: 38px; /* Thinner */
+      height: 38px; /* Thinner */
+      font-size: 15px;
       box-shadow: var(--se-shadow-btn);
       justify-content: center;
       align-items: center;
@@ -325,12 +325,12 @@
       text-decoration: none;
     }
     .call-btn-3d span {
-      font-size: 16px;
+      font-size: 15px;
       color: #fff;
     }
     .call-btn-3d:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(23, 107, 57, 0.35);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(23, 107, 57, 0.30);
     }
     .call-btn-3d:active {
       transform: translateY(1px) scale(0.95);
@@ -340,7 +340,7 @@
     .image-container {
       position: relative;
       display: none;
-      margin: 10px auto 16px auto;
+      margin: 10px auto 14px auto;
       width: 100%;
       max-width: 340px;
       max-height: 220px;
@@ -399,7 +399,7 @@
       max-width: 400px;
       aspect-ratio: 4/3;
       background: #000;
-      border-radius: 16px;
+      border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     }
@@ -407,7 +407,7 @@
     #camera-video {
       width: 100%;
       height: auto;
-      border-radius: 16px;
+      border-radius: 14px;
       background: #222;
     }
 
@@ -428,8 +428,8 @@
 
     .close-cam-btn {
       position: absolute;
-      top: 12px;
-      right: 12px;
+      top: 10px;
+      right: 10px;
       z-index: 100;
       background: rgba(255,255,255,0.9);
       color: var(--se-green-3);
@@ -448,8 +448,8 @@
 
     .doc-mode-bar {
       position: absolute;
-      left: 12px;
-      top: 12px;
+      left: 10px;
+      top: 10px;
       z-index: 120;
       display: flex;
       gap: 6px;
@@ -489,12 +489,12 @@
       color: #fff;
       border: none;
       border-radius: 100%;
-      width: 64px;
-      height: 64px;
+      width: 60px;
+      height: 60px;
       box-shadow: var(--se-shadow-btn);
       cursor: pointer;
       transition: all 0.2s ease;
-      margin-top: 24px;
+      margin-top: 20px;
       border: 3px solid rgba(255,255,255,0.8);
     }
     .capture-btn-3d:active {
@@ -637,10 +637,17 @@
     }
     .swal2-icon.swal2-success { animation: seSuccessPop .3s ease-out; }
 
+    /* TOAST NOTIFICATION STYLES (Font size adjusted to match 13px) */
     .swal2-popup.swal2-toast { 
-      padding: 12px 16px !important; 
+      padding: 10px 14px !important; 
       border-radius: 12px !important;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+    }
+    .swal2-popup.swal2-toast .swal2-title {
+      font-size: 13px !important;
+    }
+    .swal2-popup.swal2-toast .swal2-html-container {
+      font-size: 12px !important;
     }
 
     /* FOOTER */
@@ -658,6 +665,7 @@
     }
   </style>
 </head>
+  
 
   <body>
 
