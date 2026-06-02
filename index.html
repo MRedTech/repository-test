@@ -3,75 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PWA Secure Entry Admin</title>
+    <title>Dashboard | PWA Secure Entry</title>
     
-    <!-- PWA Basic Requirements -->
     <meta name="theme-color" content="#1e293b">
     <link rel="manifest" href="/manifest.json">
-    <link rel="apple-touch-icon" href="/icon-192x192.png">
     
-    <!-- Tailwind CSS via CDN for quick preview -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-slate-900 h-screen flex items-center justify-center p-4">
+<body class="bg-slate-900 text-slate-200 h-screen overflow-hidden flex flex-col">
 
-    <!-- Admin Login Card -->
-    <div class="bg-slate-800 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-slate-700">
-        
-        <!-- Header & Icon -->
-        <div class="text-center mb-8">
-            <div class="bg-blue-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/50">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7a4 4 0 00-8 0v4h8z"></path>
+    <header class="bg-slate-800 border-b border-slate-700 py-4 px-6 flex justify-between items-center shadow-md z-10">
+        <div class="flex items-center gap-3">
+            <div class="bg-blue-500 p-2 rounded-lg">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                 </svg>
             </div>
-            <h1 class="text-2xl font-bold text-white tracking-wide">Secure Entry</h1>
-            <p class="text-slate-400 text-sm mt-2">PWA Admin Login</p>
+            <h1 class="text-xl font-bold text-white tracking-wider">SECURE ENTRY <span class="text-blue-400 font-light">| SENSORY</span></h1>
         </div>
+        <div class="flex items-center gap-4 text-sm">
+            <span class="text-slate-400">Date: 01/06/2026</span>
+            <button class="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg transition-colors">Logout</button>
+        </div>
+    </header>
 
-        <!-- Login Form -->
-        <form>
-            <div class="mb-6">
-                <label class="block text-slate-300 text-sm font-semibold mb-2" for="username">
-                    Username
-                </label>
-                <input class="w-full px-4 py-3 rounded-lg bg-slate-900 text-white border border-slate-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" id="username" type="text" placeholder="Enter your username" required>
-            </div>
+    <main class="flex-1 overflow-y-auto p-6">
+        <div class="max-w-7xl mx-auto space-y-6">
             
-            <div class="mb-6">
-                <label class="block text-slate-300 text-sm font-semibold mb-2" for="password">
-                    Password
-                </label>
-                <input class="w-full px-4 py-3 rounded-lg bg-slate-900 text-white border border-slate-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" id="password" type="password" placeholder="••••••••" required>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                    <h3 class="text-slate-400 text-sm font-semibold mb-1">TOTAL REGISTRATION</h3>
+                    <p class="text-3xl font-bold text-white">157</p>
+                    <p class="text-emerald-400 text-xs mt-2">↑ 01/06/2026 - 01/06/2026</p>
+                </div>
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                    <h3 class="text-slate-400 text-sm font-semibold mb-1">PEAK HOUR</h3>
+                    <p class="text-3xl font-bold text-white">12:00</p>
+                    <p class="text-slate-400 text-xs mt-2">Highest peak hour within filter</p>
+                </div>
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                    <h3 class="text-slate-400 text-sm font-semibold mb-1">RECORD FOUND RATE</h3>
+                    <p class="text-3xl font-bold text-blue-400">57%</p>
+                    <p class="text-slate-400 text-xs mt-2">Existing records / Total</p>
+                </div>
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                    <h3 class="text-slate-400 text-sm font-semibold mb-1">NEW RECORD RATE</h3>
+                    <p class="text-3xl font-bold text-purple-400">43%</p>
+                    <p class="text-slate-400 text-xs mt-2">New records / Total</p>
+                </div>
             </div>
-            
-            <div class="flex items-center justify-between mb-8">
-                <label class="flex items-center text-sm text-slate-400 cursor-pointer">
-                    <input type="checkbox" class="form-checkbox bg-slate-900 border-slate-700 rounded text-blue-500 focus:ring-blue-500 focus:ring-offset-slate-800">
-                    <span class="ml-2">Remember me</span>
-                </label>
-                <a class="text-sm text-blue-400 hover:text-blue-300 transition-colors" href="#">Forgot password?</a>
-            </div>
-            
-            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg shadow-blue-500/30 transition-all transform hover:scale-[1.02]" type="submit">
-                Secure Login
-            </button>
-        </form>
-    </div>
 
-    <!-- Service Worker Registration for PWA -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                    <h2 class="text-lg font-semibold text-white mb-4">Hourly Registration Trend</h2>
+                    <div class="relative h-64">
+                        <canvas id="hourlyChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                    <h2 class="text-lg font-semibold text-white mb-4">Group Category Breakdown</h2>
+                    <div class="relative h-64 flex justify-center">
+                        <canvas id="doughnutChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg mb-8">
+                <h2 class="text-lg font-semibold text-white mb-4">Category Breakdown (Detailed)</h2>
+                <div class="relative h-72">
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful with scope:', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('ServiceWorker registration failed:', error);
-                    });
-            });
-        }
+        // Global defaults for dark theme
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.borderColor = '#334155';
+        Chart.defaults.font.family = 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+
+        // 1. Hourly Trend Bar Chart
+        const ctxHourly = document.getElementById('hourlyChart').getContext('2d');
+        new Chart(ctxHourly, {
+            type: 'bar',
+            data: {
+                labels: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                datasets: [{
+                    label: 'Registrations',
+                    data: [12, 8, 15, 25, 6, 9, 7, 13, 15, 12],
+                    backgroundColor: '#3b82f6', // Tailwind blue-500
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        // 2. Group Category Doughnut Chart
+        const ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
+        new Chart(ctxDoughnut, {
+            type: 'doughnut',
+            data: {
+                labels: ['Food Delivery', 'E-Hailing', 'Parcel / Courier'],
+                datasets: [{
+                    data: [65, 25, 10],
+                    backgroundColor: [
+                        '#3b82f6', // blue-500
+                        '#f59e0b', // amber-500
+                        '#ef4444'  // red-500
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right' }
+                },
+                cutout: '70%' // Makes it look modern and sleek
+            }
+        });
+
+        // 3. Category Detailed Horizontal Bar Chart
+        const ctxCategory = document.getElementById('categoryChart').getContext('2d');
+        new Chart(ctxCategory, {
+            type: 'bar',
+            indexAxis: 'y', // Makes it horizontal
+            data: {
+                labels: ['Grab Food', 'Food Panda', 'Shopee Food', 'Lalamove', 'J&T Express'],
+                datasets: [{
+                    label: 'Registrations',
+                    data: [75, 45, 20, 15, 10],
+                    backgroundColor: '#8b5cf6', // purple-500
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { beginAtZero: true } }
+            }
+        });
     </script>
 </body>
 </html>
