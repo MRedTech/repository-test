@@ -1581,20 +1581,21 @@
     function calcTextPattern(gray, w, h){
       const startY = Math.floor(h * 0.35);
       const endY   = Math.floor(h * 0.65);
-      const stepY  = Math.floor(h * 0.08);
+      const stepY  = Math.floor(h * 0.06);
       let totalEdges = 0;
       let lines = 0;
 
       for(let y = startY; y <= endY; y += stepY){
         const rowIdx = y * w;
-        let lastVal = gray[rowIdx + Math.floor(w * 0.1)];
         let edges = 0;
         
-        for(let x = Math.floor(w * 0.1); x < Math.floor(w * 0.9); x += 2){
+        for(let x = Math.floor(w * 0.1) + 3; x < Math.floor(w * 0.9); x += 3){
           const val = gray[rowIdx + x];
-          if(Math.abs(val - lastVal) > 35){ 
+          const prev = gray[rowIdx + x - 3];
+          
+          if(Math.abs(val - prev) > 60){ 
             edges++;
-            lastVal = val;
+            x += 3;
           }
         }
         totalEdges += edges;
