@@ -453,13 +453,49 @@
       box-shadow: 0 3px 10px #8ed5a3, 0 1.5px 3px #3333;
       letter-spacing: 1.5px;
       cursor: pointer;
-      transition: box-shadow 0.18s, transform 0.1s, opacity 0.3s;
+      transition: box-shadow 0.18s, transform 0.1s;
       margin-top: 16px;
     }
 
     .capture-btn-3d:active {
       box-shadow: 0 2px 5px #bbb;
       transform: translateY(2px) scale(0.98);
+    }
+
+    /* CAPTURE BUTTON DISABLED STATE */
+    .capture-btn-3d:disabled {
+      background: #888 !important;
+      box-shadow: 0 3px 10px #555, 0 1.5px 3px #3333 !important;
+      cursor: not-allowed;
+      transform: none !important;
+      opacity: 0.7;
+    }
+
+    /* HOLD STEADY WARNING OVERLAY */
+    .steady-warning {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(43, 122, 43, 0.95);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: 'Google Sans', 'Google Sans Text', Roboto, Arial, sans-serif;
+      font-weight: 900;
+      font-size: 16px;
+      letter-spacing: 1.5px;
+      text-align: center;
+      z-index: 1000;
+      display: none;
+      animation: blink-green 1s ease-in-out infinite;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      white-space: nowrap;
+    }
+
+    @keyframes blink-green {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.1; }
     }
 
     @media (max-width: 500px) {
@@ -621,6 +657,7 @@
       outline: none;
     }
 
+    /* Consistent focus style (match search input) */
     input:focus, select:focus, textarea:focus {
       border: 1.6px solid var(--se-green-3) !important;
       background: #f6fff6 !important;
@@ -656,6 +693,13 @@
       }
     }
 
+    /* ==================================================
+       PREMIUM UI PATCH
+       - Fixed header premium (Sensory style)
+       - Soft green glow cards/inputs
+       - Consistent 3D/gradient buttons
+       - Lightweight micro-animations (loading ring + success pop)
+    ================================================== */
     :root {
       --se-green-1: #41e671;
       --se-green-2: #176B39;
@@ -667,11 +711,13 @@
       --se-glow-strong: rgba(59, 217, 123, .28);
     }
 
+    /* GLOBAL FONT OVERRIDE (Google Sans) */
     html, body, button, input, select, textarea, label, h1, h2, h3, h4, h5, h6,
     .clock-bar, .header-gradient, .search-mini-title, .photo-label, .swal2-popup, .swal2-title, .swal2-html-container, .swal2-confirm, .swal2-cancel, .footer {
       font-family: 'Google Sans', 'Google Sans Text', Roboto, Arial, sans-serif !important;
     }
 
+    /* Respect reduce-motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: .001ms !important;
@@ -681,6 +727,7 @@
       }
     }
 
+    /* Header: premium fixed + glass */
     .fixed-header {
       background: rgba(233, 245, 233, .86) !important;
       backdrop-filter: blur(10px);
@@ -698,6 +745,7 @@
       opacity: .55;
     }
 
+    /* Cards: soft glow */
     .search-minicard {
       border: 1px solid rgba(23, 107, 57, .10);
       box-shadow: 0 10px 22px rgba(23, 107, 57, .08), 0 0 18px var(--se-glow) !important;
@@ -713,6 +761,7 @@
       padding: 12px 15px 16px 15px;
     }
 
+    /* Inputs: glow focus + consistent placeholder */
     input::placeholder {
       color: var(--se-placeholder) !important;
       opacity: .92;
@@ -727,6 +776,7 @@
       box-shadow: 0 0 0 3px rgba(59, 217, 123, .18);
     }
 
+    /* Required/invalid: red blink on submit (overrides green focus glow) */
     .se-invalid-blink, .se-invalid-blink:focus, .se-invalid-blink:focus-visible, .se-invalid-blink:invalid {
       border-color: rgba(231, 76, 60, .95) !important;
       box-shadow: 0 0 0 2px rgba(231, 76, 60, .25), 0 0 0 5px rgba(231, 76, 60, .12) !important;
@@ -742,6 +792,7 @@
       }
     }
 
+    /* Buttons: consistent premium gradient + micro-lift */
     .btn-3d, .swal2-confirm {
       background: linear-gradient(145deg, var(--se-green-1) 0%, var(--se-green-2) 100%) !important;
     }
@@ -761,10 +812,12 @@
       box-shadow: 0 3px 10px rgba(0, 0, 0, .10) !important;
     }
 
+    /* Keep round buttons consistent too */
     .call-btn-3d, .capture-btn-3d {
       background: linear-gradient(145deg, var(--se-green-1) 0%, var(--se-green-2) 100%) !important;
     }
 
+    /* SweetAlert success micro-pop */
     @keyframes seSuccessPop {
       0% { transform: scale(.92); }
       100% { transform: scale(1); }
@@ -774,13 +827,16 @@
       animation: seSuccessPop .18s ease-out;
     }
 
+    /* SweetAlert2 toast helper (Option A) */
     .swal2-container { z-index: 99999 !important; }
     .swal2-popup.swal2-toast { box-shadow: 0 8px 20px rgba(0, 0, 0, .18); }
+    /* Toast typography (slightly smaller + cleaner) */
     .swal2-popup.swal2-toast { padding: 10px 12px !important; }
     .swal2-popup.swal2-toast .swal2-title { font-size: 14px !important; letter-spacing: 0.8px !important; line-height: 1.15 !important; }
     .swal2-popup.swal2-toast .swal2-html-container { font-size: 12px !important; letter-spacing: 0.45px !important; line-height: 1.25 !important; }
     .swal2-popup.swal2-toast .swal2-icon { width: 1.6em !important; height: 1.6em !important; margin: 0 .55em 0 0 !important; }
     .swal2-popup.swal2-toast .swal2-icon-content { font-size: 1.15em !important; }
+    /* Secure Entry: center toast content (icon + text) */
     .swal2-container.se-toast-near { pointer-events: none; }
     .swal2-container.se-toast-near .swal2-popup.swal2-toast { pointer-events: auto; }
     .swal2-popup.swal2-toast { justify-content: center; }
@@ -910,6 +966,7 @@
     <div class="camera-wrap">
       <div class="camera-container">
         <video id="camera-video" autoplay playsinline></video>
+        <div id="steadyWarning" class="steady-warning">HOLD PHONE STEADY</div>
         <div class="doc-mode-bar" id="docModeBar" aria-label="Document type">
           <div class="doc-pill active" data-mode="CARD">CARD</div>
           <div class="doc-pill" data-mode="PASSPORT">PASSPORT</div>
@@ -943,10 +1000,6 @@
           <span class="dot"></span>
           <span>GLARE / SHADOW</span>
         </div>
-        <div class="ocr-item bad" data-key="text">
-          <span class="dot"></span>
-          <span>TEXT DETECTED</span>
-        </div>
         <div class="ocr-item bad" data-key="clarity">
           <span class="dot"></span>
           <span>CLARITY</span>
@@ -960,11 +1013,24 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
+    /* ==================================================
+       SECURE ENTRY SYSTEM (Frontend)
+       - Crop fix (Drive = Preview)
+       - Reuse canvas + downscale (performance)
+       - Clean unused functions
+       - Code regrouping
+    ================================================== */
+
+    /* =========================
+       CONFIG / CONSTANTS
+    ========================= */
     const WORKER_URL = "https://mredtech01.edreborn86.workers.dev/";
     const OCR_WORKER_URL = "https://secure-entry-vision01.edreborn86.workers.dev";
 
+    // Preview display ratio used by adjustPreviewSize() (maxHeight = width * ratio)
     const PREVIEW_MAX_RATIO = 0.78;
 
+    // Output sizing (speed + upload size)
     const CAPTURE_MAX_W = 1100;
     const CAPTURE_JPEG_Q = 0.75;
 
@@ -982,16 +1048,24 @@
         contrast: 30,
         brightnessMin: 70,
         brightnessMax: 210,
-        stabilityAvgDiff: 15
+        stabilityAvgDiff: 7.5,
+        glareWhitePct: 0.04,
+        shadowBlackPct: 0.14
       }
     };
 
+    /* =========================
+       OCR CAPTURE MODES (Doc Types)
+       - CARD: MyKad / Malaysia license / International license / ID card
+       - PASSPORT: Passport
+       - BOOKLET: Folded/large IDs
+    ========================= */
     const DOC_MODE = {
       current: 'CARD',
       presets: {
-        CARD:     { ar: 1.585, maxW: 1100, q: 0.76 },  
-        PASSPORT: { ar: 1.420, maxW: 1400, q: 0.78 },  
-        BOOKLET:  { ar: 1.333, maxW: 1400, q: 0.78 }   
+        CARD:     { ar: 1.585, maxW: 1100, q: 0.76 },  // card ratio
+        PASSPORT: { ar: 1.420, maxW: 1400, q: 0.78 },  // passport ID-3 approx
+        BOOKLET:  { ar: 1.333, maxW: 1400, q: 0.78 }   // wide safety
       }
     };
 
@@ -1024,6 +1098,9 @@
       setDocMode('CARD');
     })();
 
+    /* =========================
+       DOM REFS
+    ========================= */
     const remarkSelect  = document.getElementById('remark');
     const otherField    = document.getElementById('otherCategory');
     const unitField     = document.getElementById('unitNumber');
@@ -1036,25 +1113,29 @@
     const imageContainer= document.getElementById('imageContainer');
     const watermarkOverlay = document.querySelector('#imageContainer .watermark');
 
+    // Init select placeholder state
     try { setSelectPlaceholder(remarkSelect); } catch(e) {}
 
     let stream = null;
     let video  = null;
+    let cameraSteadyTimeout = null;
 
-    let autoSnapTimer = null;
-    let manualFallbackTimer = null;
-
+    // final image (single source of truth for submit)
     let __SE_SUBMIT_PHOTO = "";
 
+    // Global submit/search state
     window.__SE_CLIENT_TXN_ID = null;
     window.__SE_LAST_SEARCH_STATUS = "";
     window.__SE_EXISTING_PHOTO_LINK = "";
 
+    /* =========================
+       CANVAS REUSE (reduce GC)
+    ========================= */
     const __SE_CAPTURE = (() => {
-      const scaled = document.createElement('canvas');  
-      const finalC = document.createElement('canvas');  
+      const scaled = document.createElement('canvas');  // scaled from source crop
+      const finalC = document.createElement('canvas');  // final (ratio-cropped) output
       const ctxScaled = scaled.getContext('2d', { willReadFrequently: false });
-      const ctxFinal  = finalC.getContext('2d', { willReadFrequently: true }); 
+      const ctxFinal  = finalC.getContext('2d', { willReadFrequently: true }); // for getImageData in grayscale
 
       function ensureSize(c, w, h){
         if (c.width !== w) c.width = w;
@@ -1064,6 +1145,9 @@
       return { scaled, final: finalC, ctxScaled, ctxFinal, ensureSize };
     })();
 
+    /* =========================
+       HELPERS
+    ========================= */
     function clamp01(n){ return Math.max(0, Math.min(1, n)); }
 
     function setSelectPlaceholder(selectEl){
@@ -1100,6 +1184,26 @@
       if (imageContainer) imageContainer.style.display = 'block';
     }
 
+    function playBeep() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        const osc = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(850, ctx.currentTime);
+        gainNode.gain.setValueAtTime(0.5, ctx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+        osc.connect(gainNode);
+        gainNode.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.1);
+      } catch (e) {
+        // Abaikan secara senyap jika fungsi audio tidak disokong
+      }
+    }
+
     function drawWatermarkOnCanvas(ctx, w, h){
       const text = "SENSORY USE ONLY";
       ctx.save();
@@ -1111,8 +1215,9 @@
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
 
+      // emulate letter spacing (simple)
       const letters = text.split("");
-      const spacing = 4; 
+      const spacing = 4; // px
       let totalW = 0;
       const metrics = letters.map(ch => {
         const m = ctx.measureText(ch).width;
@@ -1164,6 +1269,7 @@
     }
 
     function adaptiveTone(canvas, ctx){
+      // Lightweight gamma tweak based on mean brightness
       const w = canvas.width, h = canvas.height;
       const img = ctx.getImageData(0, 0, w, h);
       const d = img.data;
@@ -1173,6 +1279,7 @@
       for (let i = 0; i < d.length; i += 4) sum += d[i];
       const mean = sum / Math.max(1, n);
 
+      // Choose gamma: brighten if dark, darken if too bright
       let gamma = 1.0;
       if (mean < 105) gamma = 0.85;
       else if (mean > 185) gamma = 1.12;
@@ -1189,18 +1296,21 @@
     }
 
     function sharpenLight(canvas, ctx){
+      // 3x3 sharpen kernel (lightweight) for text clarity
       const w = canvas.width, h = canvas.height;
-      if (w * h > 1200 * 900) return; 
+      if (w * h > 1200 * 900) return; // avoid heavy work on very large frames
 
       const src = ctx.getImageData(0, 0, w, h);
       const d = src.data;
       const out = new Uint8ClampedArray(d.length);
 
+      // Kernel: [0,-1,0; -1,5,-1; 0,-1,0]
       const idx = (x,y) => (y*w + x) * 4;
 
       for (let y = 1; y < h-1; y++){
         for (let x = 1; x < w-1; x++){
           const i = idx(x,y);
+          // grayscale already, so use R
           const c  = d[i];
           const l  = d[idx(x-1,y)];
           const r  = d[idx(x+1,y)];
@@ -1216,6 +1326,7 @@
         }
       }
 
+      // Copy borders
       for (let x = 0; x < w; x++){
         let i1 = idx(x,0), i2 = idx(x,h-1);
         out[i1]=d[i1]; out[i1+1]=d[i1+1]; out[i1+2]=d[i1+2]; out[i1+3]=d[i1+3];
@@ -1232,9 +1343,11 @@
     }
 
     function isBlurryFromCanvas(canvas, ctx){
+      // Variance of Laplacian (sampled) on grayscale image
       const w = canvas.width, h = canvas.height;
       const img = ctx.getImageData(0, 0, w, h).data;
 
+      // sample stride to keep fast
       const step = (w * h > 700000) ? 3 : 2;
       let sum = 0, sum2 = 0, n = 0;
 
@@ -1257,11 +1370,15 @@
       const mean = sum / Math.max(1, n);
       const varr = (sum2 / Math.max(1, n)) - (mean*mean);
 
+      // threshold tuned for phone camera + ID text
       const preset = DOC_MODE.presets[DOC_MODE.current] || DOC_MODE.presets.CARD;
       const th = (DOC_MODE.current === 'PASSPORT') ? 85 : 95;
       return varr < th;
     }
 
+    /* =========================
+       MYKAD AUTO DASH + VALIDATION
+    ========================= */
     (function attachMykadAutoDash(){
       const mykadInput = document.getElementById('mykadPassport');
       if (!mykadInput) return;
@@ -1293,11 +1410,13 @@
 
         const caretPos = this.selectionStart || 0;
 
+        // Detect passport (has letters) vs MyKad (digits only)
         const alnumBeforeCaret = raw.slice(0, caretPos).replace(/[^A-Z0-9]/g, '');
         const alnum = raw.replace(/[^A-Z0-9]/g, '');
         const hasLetter = /[A-Z]/.test(alnum);
 
         if (hasLetter){
+          // Passport / mixed: keep alphanumeric only (no dashes)
           const newVal = alnum;
           this.value = newVal;
           const newCaret = caretFromAllowedCount(newVal, alnumBeforeCaret.length);
@@ -1306,6 +1425,7 @@
           return;
         }
 
+        // MyKad (digits): progressive 6-2-4 with caret preservation
         const digitsBeforeCaret = raw.slice(0, caretPos).replace(/\D/g, '').length;
         const digits = raw.replace(/\D/g, '').slice(0, 12);
         const formatted = formatMykadProgressive(digits);
@@ -1349,68 +1469,30 @@
       return true;
     }
 
-    function playSubtleBeep() {
-      try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContext) return;
-        const ctx = new AudioContext();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(880, ctx.currentTime);
-        
-        gain.gain.setValueAtTime(0.1, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
-        
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.15);
-      } catch(e) {
-      }
-    }
-
+    /* =========================
+       CAMERA / OCR
+    ========================= */
     function openCamera() {
       document.getElementById('cameraModal').style.display = 'flex';
       setDocMode(DOC_MODE.current);
+
+      const captureBtn = document.querySelector('.capture-btn-3d');
+      const warningEl = document.getElementById('steadyWarning');
+      
+      // Reset keadaan butang disable dan notis berkelip sebelum kamera dimulakan
+      if (captureBtn) captureBtn.disabled = true;
+      if (warningEl) warningEl.style.display = 'block';
+
       startCamera();
     }
 
     async function startCamera() {
       video = document.getElementById('camera-video');
-
-      const captureBtn = document.querySelector('#cameraModal .capture-btn-3d');
-      if (captureBtn) {
-        captureBtn.disabled = true;
-        captureBtn.style.opacity = '0.4';
-        captureBtn.style.pointerEvents = 'none';
-      }
-      
-      clearTimeout(manualFallbackTimer);
-      manualFallbackTimer = setTimeout(() => {
-        if (captureBtn) {
-          captureBtn.disabled = false;
-          captureBtn.style.opacity = '1';
-          captureBtn.style.pointerEvents = 'auto';
-          
-          if (typeof Swal !== 'undefined' && document.getElementById('cameraModal').style.display === 'flex') {
-            Swal.fire({
-              toast: true,
-              position: 'top',
-              icon: 'info',
-              title: 'MANUAL MODE ENABLED',
-              showConfirmButton: false,
-              timer: 2500
-            });
-          }
-        }
-      }, 10000); 
-
       try {
         stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
         video.srcObject = stream;
 
+        // Best-effort: lock focus/exposure for clearer OCR (device-dependent)
         try {
           const track = stream.getVideoTracks && stream.getVideoTracks()[0];
           if (track && track.getCapabilities) {
@@ -1428,15 +1510,39 @@
               if (caps.whiteBalanceMode.includes('continuous')) adv.whiteBalanceMode = 'continuous';
             }
 
+            // Apply only if we have anything supported
             if (Object.keys(adv).length) {
               await track.applyConstraints({ advanced: [adv] });
             }
           }
         } catch (e) {
+          // silent: not supported on all phones
         }
 
         await video.play().catch(() => {});
         startOcrLive();
+
+        // Mulakan timer 3 saat untuk hilangkan amaran dan aktifkan butang
+        if (cameraSteadyTimeout) clearTimeout(cameraSteadyTimeout);
+        cameraSteadyTimeout = setTimeout(() => {
+          const captureBtn = document.querySelector('.capture-btn-3d');
+          const warningEl = document.getElementById('steadyWarning');
+          
+          if (warningEl) warningEl.style.display = 'none';
+          if (captureBtn) captureBtn.disabled = false;
+          
+          // Paparkan notifikasi Ready hanya jika Modal Kamera masih dibuka
+          if (document.getElementById('cameraModal').style.display !== 'none') {
+            Swal.fire({
+              toast: true,
+              position: 'top',
+              icon: 'success',
+              title: 'READY TO CAPTURE',
+              showConfirmButton: false,
+              timer: 2000
+            });
+          }
+        }, 3000);
 
       } catch (e) {
         alert("Failed to open camera: " + e.message);
@@ -1447,19 +1553,9 @@
     function closeCameraModal() {
       document.getElementById('cameraModal').style.display = 'none';
 
+      if (cameraSteadyTimeout) clearTimeout(cameraSteadyTimeout);
+
       stopOcrLive();
-
-      clearTimeout(autoSnapTimer);
-      clearTimeout(manualFallbackTimer);
-      autoSnapTimer = null;
-      manualFallbackTimer = null;
-
-      const captureBtn = document.querySelector('#cameraModal .capture-btn-3d');
-      if (captureBtn) {
-        captureBtn.disabled = false;
-        captureBtn.style.opacity = '1';
-        captureBtn.style.pointerEvents = 'auto';
-      }
 
       if (stream) {
         stream.getTracks().forEach(track => track.stop());
@@ -1519,6 +1615,39 @@
       return { gray, w, h };
     }
 
+    function pctExtreme(gray, mode){
+      let c = 0;
+      const n = gray.length;
+
+      const WHITE_T = 220;
+      const BLACK_T = 18;
+
+      for (let i=0;i<n;i++){
+        const v = gray[i];
+        if (mode === "white" && v >= WHITE_T) c++;
+        if (mode === "black" && v <= BLACK_T) c++;
+      }
+      return c / n;
+    }
+
+    function hasWhiteCluster(gray, w, h){
+      const WHITE_T = 215;
+      const MIN_CLUSTER = Math.floor(w * h * 0.008);
+
+      let run = 0;
+      for (let i = 0; i < gray.length; i += 2){
+        if (gray[i] >= WHITE_T){
+          run++;
+          if (run >= MIN_CLUSTER) return true;
+        } else {
+          run = 0;
+        }
+      }
+      return false;
+    }
+
+    let lastFrameGray = null;
+
     function calcStability(gray){
       if (!lastFrameGray){
         lastFrameGray = new Uint8Array(gray.length);
@@ -1541,55 +1670,6 @@
       return avgDiff <= OCR_LIVE.TH.stabilityAvgDiff;
     }
 
-    // --- FORMULA BARU: GLARE / SHADOW ---
-    function calcGlareShadow(gray) {
-      let extreme = 0, soft = 0, dark = 0;
-      const n = gray.length;
-      for (let i = 0; i < n; i++) {
-        const v = gray[i];
-        if (v >= 235) extreme++;      
-        else if (v >= 210) soft++;    
-        
-        if (v <= 15) dark++;          
-      }
-      
-      const extPct = extreme / n;
-      const softPct = soft / n;
-      const darkPct = dark / n;
-      
-      return (extPct < 0.008) && (softPct < 0.08) && (darkPct < 0.20);
-    }
-
-    // --- FORMULA BARU: TEXT PATTERN ---
-    function calcTextPattern(gray, w, h){
-      const startY = Math.floor(h * 0.35);
-      const endY   = Math.floor(h * 0.65);
-      const stepY  = Math.floor(h * 0.06);
-      let totalEdges = 0;
-      let lines = 0;
-
-      for(let y = startY; y <= endY; y += stepY){
-        const rowIdx = y * w;
-        let edges = 0;
-        
-        for(let x = Math.floor(w * 0.1) + 3; x < Math.floor(w * 0.9); x += 3){
-          const val = gray[rowIdx + x];
-          const prev = gray[rowIdx + x - 3];
-          
-          if(Math.abs(val - prev) > 60){ 
-            edges++;
-            x += 3; 
-          }
-        }
-        totalEdges += edges;
-        lines++;
-      }
-      const avgEdges = totalEdges / Math.max(1, lines);
-      return avgEdges >= 5; 
-    }
-
-    let lastFrameGray = null;
-
     function startOcrLive(){
       const videoEl = document.getElementById("camera-video");
       const canvasEl = document.getElementById("ocrProbe");
@@ -1604,7 +1684,6 @@
       setOcrItem("light", false);
       setOcrItem("contrast", false);
       setOcrItem("glare", false);
-      setOcrItem("text", false);
       setOcrItem("clarity", false);
 
       lastFrameGray = null;
@@ -1631,8 +1710,13 @@
           const okLight = (mean >= OCR_LIVE.TH.brightnessMin) && (mean <= OCR_LIVE.TH.brightnessMax);
           const okContrast = std >= OCR_LIVE.TH.contrast;
 
-          const okGlare = calcGlareShadow(gray);
-          const okText = calcTextPattern(gray, w, h);
+          const glarePct  = pctExtreme(gray, "white");
+          const shadowPct = pctExtreme(gray, "black");
+          const hasCluster = hasWhiteCluster(gray, w, h);
+
+          const okGlare = (glarePct < OCR_LIVE.TH.glareWhitePct) &&
+                          (shadowPct < OCR_LIVE.TH.shadowBlackPct) &&
+                          !hasCluster;
 
           const okClarity = okSharp && okStable && okLight && okContrast && okGlare;
 
@@ -1641,27 +1725,10 @@
           setOcrItem("light", okLight);
           setOcrItem("contrast", okContrast);
           setOcrItem("glare", okGlare);
-          setOcrItem("text", okText);
           setOcrItem("clarity", okClarity);
 
-          const allGreen = okSharp && okStable && okLight && okContrast && okGlare && okClarity && okText;
+          const allGreen = okSharp && okStable && okLight && okContrast && okGlare && okClarity;
           if (guidelineEl) guidelineEl.classList.toggle("ocr-ready", allGreen);
-
-          if (allGreen && !document.body.classList.contains('swal2-shown')) {
-            if (!autoSnapTimer) {
-              autoSnapTimer = setTimeout(() => {
-                autoSnapTimer = null; 
-                if (OCR_LIVE.running && !document.body.classList.contains('swal2-shown')) {
-                  captureImage();
-                }
-              }, 300); 
-            }
-          } else {
-            if (autoSnapTimer) {
-              clearTimeout(autoSnapTimer);
-              autoSnapTimer = null;
-            }
-          }
         }
 
         OCR_LIVE.rafId = requestAnimationFrame(loop);
@@ -1684,10 +1751,12 @@
       setOcrItem("light", false);
       setOcrItem("contrast", false);
       setOcrItem("glare", false);
-      setOcrItem("text", false);
       setOcrItem("clarity", false);
     }
 
+    /* =========================
+       CAPTURE (CROP FIX + DOWNSCALE + REUSE)
+    ========================= */
     function getGuidelineCropRatios(){
       const container = document.querySelector('.camera-container');
       const guideline = document.querySelector('.guideline');
@@ -1696,8 +1765,10 @@
 
       const g = guideline.getBoundingClientRect();
 
+      // IMPORTANT: map guideline relative to *visible video* rectangle (not container)
       let vRect = videoEl.getBoundingClientRect();
 
+      // fallback to container if video rect not ready
       if (!vRect || vRect.width < 2 || vRect.height < 2) {
         vRect = container.getBoundingClientRect();
       }
@@ -1713,6 +1784,16 @@
     function buildFinalImageFromSourceCrop(drawSourceCropFn, options){
       options = options || {};
       const burnInWatermark = options.burnInWatermark !== false;
+      // 1) draw source crop -> __SE_CAPTURE.scaled (already downscaled)
+      // 2) crop height to PREVIEW_MAX_RATIO (match preview container)
+      // 3) grayscale+contrast on final canvas
+      // 4) watermark burn-in
+      // 5) return dataUrl
+
+      // drawSourceCropFn MUST:
+      // - set __SE_CAPTURE.scaled to desired output size
+      // - draw image into __SE_CAPTURE.scaled
+      // - return { outW, outH }
 
       const info = drawSourceCropFn();
       if (!info || !info.outW || !info.outH) return "";
@@ -1720,6 +1801,7 @@
       const outW = info.outW;
       const outH = info.outH;
 
+      // Step B: auto-crop to the target document aspect ratio for better OCR accuracy
       const preset = (DOC_MODE.presets[DOC_MODE.current] || DOC_MODE.presets.CARD);
       const targetAR = preset && preset.ar ? preset.ar : 1.585;
       const desiredH = Math.max(1, Math.round(outW / targetAR));
@@ -1728,23 +1810,30 @@
 
       __SE_CAPTURE.ensureSize(__SE_CAPTURE.final, outW, finalH);
 
+      // draw from scaled to final (center crop to keep document centered)
       __SE_CAPTURE.ctxFinal.clearRect(0, 0, outW, finalH);
       __SE_CAPTURE.ctxFinal.drawImage(__SE_CAPTURE.scaled, 0, srcY, outW, finalH, 0, 0, outW, finalH);
 
+      // Step C: grayscale + adaptive contrast + light sharpening for better OCR accuracy
       applyGrayscaleContrast(__SE_CAPTURE.final, __SE_CAPTURE.ctxFinal);
       adaptiveTone(__SE_CAPTURE.final, __SE_CAPTURE.ctxFinal);
       sharpenLight(__SE_CAPTURE.final, __SE_CAPTURE.ctxFinal);
 
+      // Step D: watermark burn-in (optional)
       if (burnInWatermark) {
         drawWatermarkOnCanvas(__SE_CAPTURE.ctxFinal, outW, finalH);
       }
 
+      // Step E: encode
       const presetQ = (DOC_MODE.presets[DOC_MODE.current] || DOC_MODE.presets.CARD).q || CAPTURE_JPEG_Q;
       return __SE_CAPTURE.final.toDataURL('image/jpeg', presetQ);
     }
 
     function captureImage() {
       if (!video) return;
+
+      // Mainkan bunyi beep semasa ditekan
+      playBeep();
 
       const ratios = getGuidelineCropRatios();
       if (!ratios) return;
@@ -1762,6 +1851,7 @@
         const safeSW = Math.max(1, Math.min(sw, vw - sx));
         const safeSH = Math.max(1, Math.min(sh, vh - sy));
 
+        // downscale target (smart per document type)
         const preset = DOC_MODE.presets[DOC_MODE.current] || DOC_MODE.presets.CARD;
         const maxW = preset.maxW || CAPTURE_MAX_W;
         const outW = Math.min(maxW, safeSW);
@@ -1771,6 +1861,7 @@
         __SE_CAPTURE.ensureSize(__SE_CAPTURE.scaled, outW, outH);
         __SE_CAPTURE.ctxScaled.clearRect(0,0,outW,outH);
 
+        // draw directly from video -> scaled canvas (no full-frame canvas)
         __SE_CAPTURE.ctxScaled.drawImage(video, sx, sy, safeSW, safeSH, 0, 0, outW, outH);
 
         return { outW, outH };
@@ -1778,6 +1869,7 @@
 
       if (!cleanDataUrl) return;
 
+      // Blur check: if the image is blurry, require a retake before running OCR.
       try{
         const blurry = isBlurryFromCanvas(__SE_CAPTURE.final, __SE_CAPTURE.ctxFinal);
         if (blurry){
@@ -1791,6 +1883,7 @@
         }
       } catch(e) {}
 
+      // Create a watermarked version for Drive/submission without affecting OCR.
       const watermarkedDataUrl = (() => {
         const w = __SE_CAPTURE.final.width;
         const h = __SE_CAPTURE.final.height;
@@ -1802,8 +1895,6 @@
       if (watermarkOverlay) watermarkOverlay.style.display = '';
       setPreviewOnly(cleanDataUrl);
       __SE_SUBMIT_PHOTO = (watermarkedDataUrl && watermarkedDataUrl.startsWith("data:image")) ? watermarkedDataUrl : "";
-
-      playSubtleBeep();
 
       closeCameraModal();
 
@@ -1828,9 +1919,11 @@
             throw new Error("AI Message: " + result.message);
           }
 
+          // Continue only if Gemini returned a name or an ID number.
           if (result.name || result.idnum) {
             if (result.name) {
               const rawName = result.name.toUpperCase().trim();
+              // Use the existing filterNonNameWords function in this index.html
               const cleanName = filterNonNameWords(rawName);
               document.getElementById('namePassport').value = cleanName;
             }
@@ -1839,10 +1932,12 @@
               const icEl = document.getElementById('mykadPassport');
               if (icEl) {
                 icEl.value = result.idnum.toUpperCase();
+                // Trigger the input event so the MyKad auto-format function runs
                 icEl.dispatchEvent(new Event('input'));
               }
             }
 
+            // Show a small success toast.
             Swal.fire({
               toast: true,
               position: 'top',
@@ -1858,6 +1953,7 @@
         } catch (err) {
           document.body.style.cursor = 'default';
           console.error("Autofill Error:", err);
+          // Show an error notification if autofill fails.
           Swal.fire({
             icon: 'error',
             title: 'AUTOFILL FAILED',
@@ -1868,6 +1964,9 @@
       })();
     }
 
+    /* =========================
+       FILE INPUT (fallback) - reuse same pipeline
+    ========================= */
     document.getElementById('imageInput').addEventListener('change', function(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -1876,6 +1975,8 @@
       reader.onload = function() {
         const img = new window.Image();
         img.onload = async function() {
+          // Preserve the current behavior: limit the input image to 800px width,
+          // crop the middle 60% of the height, then process it (ratio crop + grayscale + watermark).
           const srcW = img.width;
           const srcH = img.height;
 
@@ -1907,6 +2008,7 @@
 
           if (!cleanDataUrl) return;
 
+          // Blur check: if the image is blurry, ask the user to retake or reselect it before OCR.
           try{
             const blurry = isBlurryFromCanvas(__SE_CAPTURE.final, __SE_CAPTURE.ctxFinal);
             if (blurry){
@@ -1921,6 +2023,7 @@
             }
           } catch(e) {}
 
+          // Create a watermarked version for Drive/submission without affecting OCR.
           const watermarkedDataUrl = (() => {
             const w = __SE_CAPTURE.final.width;
             const h = __SE_CAPTURE.final.height;
@@ -1983,10 +2086,18 @@
       reader.readAsDataURL(file);
     });
 
+    /* =========================
+       PREVIEW CACHE / LEGACY
+       (Drive image now matches the preview image)
+    ========================= */
     function getVisibleCroppedImageData() {
+      // For compatibility, prefer the cached final image.
       return __SE_SUBMIT_PHOTO || (previewImg && previewImg.src && previewImg.src.startsWith("data:image") ? previewImg.src : "");
     }
 
+    /* =========================
+       UI - PREVIEW BOX SIZE
+    ========================= */
     function adjustPreviewSize() {
       const container = document.getElementById('imageContainer');
       if (!container) return;
@@ -2005,6 +2116,9 @@
     window.addEventListener('load', adjustPreviewSize);
     window.addEventListener('resize', adjustPreviewSize);
 
+    /* =========================
+       PHONE CALL BUTTON
+    ========================= */
     function updateCallLink() {
       const contactEl = document.getElementById('contact');
       const callBtn   = document.getElementById('callBtn');
@@ -2031,6 +2145,9 @@
       if (digits.length < 10) e.preventDefault();
     });
 
+    /* =========================
+       CATEGORY / REASON LOGIC
+    ========================= */
     unitField.required = false;
     otherField.required = false;
     reasonSelect.required = false;
@@ -2063,6 +2180,7 @@
         otherField.value = "";
         otherField.required = false;
       }
+      // keep placeholder color in sync
       setSelectPlaceholder(this);
     });
 
@@ -2090,6 +2208,9 @@
       }
     });
 
+    /* =========================
+       UNIT FORMAT
+    ========================= */
     document.getElementById('unitNumber').addEventListener('input', function() {
       let raw = this.value.toUpperCase();
       raw = raw.replace(/[^A-Z0-9]/g, '');
@@ -2135,6 +2256,9 @@
       this.value = val.replace(/^([A-Z])G/, "$1-G");
     });
 
+    /* =========================
+       NAME CLEANER
+    ========================= */
     const NON_NAME_WORDS = [
       "MALAYSIA", "MALAYSIA P", "KAD PENGENALAN", "IDENTITY CARD", "MYKAD", "ID", "I.D", "PASSPORT",
       "WARGANEGARA", "LELAKI", "PEREMPUAN", "ISLAM", "CHRISTIAN", "BUDDHA", "HINDU",
@@ -2275,6 +2399,9 @@
       return finalName;
     }
 
+    /* =========================
+       SEARCH (no cache, inflight only)
+    ========================= */
     document.addEventListener("DOMContentLoaded", () => {
       if (!sessionStorage.getItem("SE_WARMED")) {
         fetch(WORKER_URL + "?debug=1", { cache: "no-store" }).catch(() => {});
@@ -2292,19 +2419,23 @@
       const digitsOnly = s.replace(/[^0-9]/g, "");
       const alnumOnly  = s.replace(/[^A-Z0-9]/g, "");
 
+      // Strong ID signals
       if (digitsOnly.length === 12 && !/[A-Z]/.test(alnumOnly)) return FIELD.ID;
       if (/^\d{6}-\d{2}-\d{4}$/.test(s)) return FIELD.ID;
       if (/^[A-Z]{1,3}\d{6,}[A-Z]{3}$/.test(alnumOnly)) return FIELD.ID;
       if (/^[A-Z]{1,3}\d{6,}$/.test(alnumOnly)) return FIELD.ID;
 
+      // Strong REG signals
       if (/^[A-Z]{1,3}\d{4}[A-Z]?$/.test(alnumOnly)) return FIELD.REG;
 
+      // Fallback (always return one field to keep search single-pass)
       return (/[A-Z]/.test(alnumOnly) ? FIELD.REG : FIELD.ID);
     }
 
     async function searchRecord(field, value) {
       const cacheKey = `SE_SRCH_${field}|${value}`;
 
+      // Micro-cache results (very short TTL) to speed up repeated lookups
       if (!window.__SE_SEARCH_CACHE) window.__SE_SEARCH_CACHE = new Map();
       const cached = window.__SE_SEARCH_CACHE.get(cacheKey);
       if (cached && (Date.now() - cached.t) < 15000) {
@@ -2391,6 +2522,8 @@
         let hasHyperlink = false;
         let res;
 
+        // STRICT single-pass search:
+        // Use autodetect (REGNUM vs MYKAD/PASSPORT) and search only that column.
         const usedField = detectedField;
 
         res = await searchRecord(usedField, valueNorm);
@@ -2400,16 +2533,21 @@
           hasHyperlink = res.hasHyperlink ?? false;
         }
 
+        // Verification gate: prevent mismatched record from being treated as FOUND/EXPIRED
+
         if (found) {
           const returnedRegNorm = normalize(found.regnum || "");
           const returnedIdNorm  = normalize(found.mykadPassport || "");
 
           let isMatch = true;
           if (usedField === FIELD.REG) {
+            // Only treat as mismatch when backend actually returns a REG value and it differs
             isMatch = returnedRegNorm ? (returnedRegNorm === valueNorm) : true;
           } else if (usedField === FIELD.ID) {
+            // Only treat as mismatch when backend actually returns an ID value and it differs
             isMatch = returnedIdNorm ? (returnedIdNorm === valueNorm) : true;
           } else {
+            // Unknown field: require mismatch only if at least one identifier is present
             if (returnedRegNorm || returnedIdNorm) {
               isMatch = (returnedRegNorm === valueNorm) || (returnedIdNorm === valueNorm);
             } else {
@@ -2614,6 +2752,7 @@
         }
       }
 
+      // Reason logic
       {
         const rSel = document.getElementById('reasonSelect');
         const rOther = document.getElementById('reasonOther');
@@ -2661,6 +2800,9 @@
       }
     }
 
+    /* =========================
+       SUBMIT
+    ========================= */
     let __SE_isSubmitting = false;
     let __seActiveToastEl = null;
 
@@ -2991,6 +3133,9 @@
       }
     });
 
+    /* =========================
+       UI - FIXED HEADER OFFSET & DATE TIME
+    ========================= */
     function pad(n){return n<10?'0'+n:n;}
     function updateDateTime() {
       const now = new Date();
