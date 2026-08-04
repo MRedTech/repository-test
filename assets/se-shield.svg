@@ -1,1 +1,24 @@
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Secure Entry SE shield</title>
+  <desc id="desc">Green shield with white SE initials</desc>
+  <defs>
+    <linearGradient id="shield" x1="48" y1="32" x2="208" y2="224" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#54e087"/>
+      <stop offset="0.52" stop-color="#27a957"/>
+      <stop offset="1" stop-color="#176b39"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="72" y1="48" x2="184" y2="214" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#dfffe8"/>
+      <stop offset="1" stop-color="#7de49d"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#176b39" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M128 18 218 58v63c0 56-33 95-90 119-57-24-90-63-90-119V58l90-40Z" fill="url(#shield)" stroke="#0d512b" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M128 35 201 68v51c0 45-25 78-73 100-48-22-73-55-73-100V68l73-33Z" fill="none" stroke="url(#edge)" stroke-width="8" stroke-linejoin="round" opacity="0.92"/>
+    <path d="M58 158c24 18 48 30 70 39 25-10 49-23 70-41v-17c-21 18-45 32-70 42-24-9-47-22-70-39v16Z" fill="#ffffff" opacity="0.18"/>
+  </g>
+  <text x="128" y="148" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900" letter-spacing="-8" fill="#ffffff">SE</text>
+</svg>
